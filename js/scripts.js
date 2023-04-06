@@ -8,7 +8,7 @@ let pokemonList = [{name:'Squirtle', height:'0.5', type:'Water'},
 let pokemonBig = ' - wow, that is big!';
 
 function myLoopFunction(list) {
-    if (pokemonList[i].height > 1.5) {
+    if (list.height > 1.5) {
         document.write(list.name + ' (height: ' + (list.height) + ')' + (pokemonBig) + ' <br>');}
     else {
         document.write(list.name + ' (height: ' + (list.height) + ')<br>');
