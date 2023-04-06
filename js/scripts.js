@@ -7,10 +7,11 @@ let pokemonList = [{name:'Squirtle', height:'0.5', type:'Water'},
 
 let pokemonBig = ' - wow, that is big!';
 
-for (let i=0; i < pokemonList.length; i++) {
+function myLoopFunction(list) {
     if (pokemonList[i].height > 1.5) {
-        document.write(pokemonList[i].name + ' (height: ' + (pokemonList[i].height) + ')' + (pokemonBig) + ' <br>');}
+        document.write(list.name + ' (height: ' + (list.height) + ')' + (pokemonBig) + ' <br>');}
     else {
-        document.write(pokemonList[i].name + ' (height: ' + (pokemonList[i].height) + ')<br>');
+        document.write(list.name + ' (height: ' + (list.height) + ')<br>');
     }    
     }                   
+pokemonList.forEach(myLoopFunction); 
