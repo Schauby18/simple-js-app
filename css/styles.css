@@ -13,14 +13,6 @@
     box-sizing: border-box;
 }
 
-body {
-    background-color: var(--background-color);
-    font-family: 'lora', sans-serif;
-    font-weight: var(--font-weight);
-    font-size: var(--font-size);
-    text-align: center;
-    margin: 0 auto;
-}
 
 h1 {
     font-weight: var(--h-font-weight);
