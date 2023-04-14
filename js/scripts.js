@@ -6,6 +6,7 @@ let pokemonRepository = (function () {
                    {name:'Pidgeotto', height:'1.1', type:['Flying', 'Normal']},
                    {name:'Pidgeot', height:'1.5', type:['Flying', 'Normal']}];
 
+
   function add(pokemon) {
     pokemonList.push(pokemon);
   }
@@ -16,17 +17,31 @@ let pokemonRepository = (function () {
 
   return {
     add: add,
-    getAll: getAll
+    getAll: getAll,
+    addListItem: addListItem
   };
 })();
-                   
-  let pokemonBig = ' - wow, that is big!';
 
-  function myLoopFunction(list) {
-      if (list.height > 1.5) {
-          document.write(list.name + ' (height: ' + (list.height) + ')' + (pokemonBig) + ' <br>');}
-     else   {
-          document.write(list.name + ' (height: ' + (list.height) + ')<br>');
-       }    
-     }                   
-  pokemonRepository.getAll().forEach(myLoopFunction); 
+  function showDetails (pokemon) {
+    console.log(pokemon.name)
+  }
+
+  function addListItem(pokemon) {
+    let pokemonList = document.querySelector('.pokemon-list');
+    let listItem = document.createElement('li');
+    let button = document.createElement('button');
+    button.innerText = (pokemonList.name);
+    button.classList.add('pokemonbutton');
+    listItem.appendChild(button);
+    pokemonList.appendChild(pokemonList);
+
+    button.addEventListener('click', function () {
+      showDetails(pokemon);
+    });
+     }
+
+  console.log(pokemonRepository.getAll())
+
+  pokemonRepository.getAll().forEach(function (pokemon) {
+    pokemonRepository.addListItem(pokemon);
+  }); 
