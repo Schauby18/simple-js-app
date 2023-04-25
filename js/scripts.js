@@ -69,7 +69,7 @@ let pokemonRepository = (function () {
         let imageContainer = document.querySelector('.image-container');
         let pokemonImage = document.createElement('img');
         pokemonImage.src = pokemon.imageUrl;
-        pokemomnImage.classList.add('pokemon-image');
+        pokemonImage.classList.add('pokemon-image');
         imageContainer.innerHTML = '';
         imageContainer.append(pokemonImage);
 
