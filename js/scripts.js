@@ -55,11 +55,51 @@ let pokemonRepository = (function () {
       });
     }
 
-    function showDetails(item) {
-      pokemonRepository.loadDetails(item).then(function ()
-      {
-        console.log(item);
+    function showDetails(pokemon) {
+      loadDetails(pokemon).then(function () {
+        showModal(pokemon);
       });
+      }
+
+    function showModal (pokemon) {
+      pokemonRepository.loadDetails(pokemon).then(function () {
+        let modalTitle = document.querySelector('.modal-title');
+        modalTitle.innerText = pokemon.name;
+
+        let imageContainer = document.querySelector('.image-container');
+        let pokemonImage = document.createElement('img');
+        pokemonImage.src = pokemon.imageUrl;
+        pokemomnImage.classList.add('pokemon-image');
+        imageContainer.innerHTML = '';
+        imageContainer.append(pokemonImage);
+
+        let pokemonHeight = document.querySelector('.height');
+        pokemonHeight.innerText = 'Height: ' + pokemon.height;
+
+        let modal = document.querySelector('.modal');
+        modal.classList.add('modal-is-visible');
+        modal.classList.remove('modal');
+
+        let buttonContainer = document.querySelector('#button-container');
+        let modalCloseButton = document.createElement('button');
+        modalCloseButton.classList.add('btn');
+        modalCloseButton.classList.add('modal-close');
+        modalCloseButton.innerText = 'X';
+        buttonContainer.innerHTML = '';
+        buttonContainer.append(modalCloseButton);
+
+        buttonContainer.append(modalCloseButton);
+        modalCloseButton.addEventListener('click', function () {
+          closeModal();
+        });
+    });
+    }
+
+    function closeModal () {
+      let modalContainer = document.querySelector('#modal-container');
+      modalContainer.classList.remove('modal-is-visible');
+      modalContainer.classList.add('modal');
+      modleCloseButton.innerHTML = '';
     }
   
     return {
@@ -68,7 +108,8 @@ let pokemonRepository = (function () {
       addListItem: addListItem,
       loadList: loadList,
       loadDetails: loadDetails,
-      showDetails: showDetails
+      showDetails: showDetails,
+      showModal: showModal
     };
   })();
   
