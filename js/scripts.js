@@ -64,17 +64,8 @@ let pokemonRepository = (function () {
     function showModal (pokemon) {
       modalContainer.innerHTML = '';
 
-<<<<<<< Updated upstream
-        let imageContainer = document.querySelector('.image-container');
-        let pokemonImage = document.createElement('img');
-        pokemonImage.src = pokemon.imageUrl;
-        pokemomnImage.classList.add('pokemon-image');
-        imageContainer.innerHTML = '';
-        imageContainer.append(pokemonImage);
-=======
       let modal = document.createElement('div');
       modal.classList.add('modal');
->>>>>>> Stashed changes
 
       let closeButtonElement = document.createElement('button');
       closeButtonElement.classList.add('modal-close');
