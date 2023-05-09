@@ -70,6 +70,7 @@
 }
 
 .pokemon-list {
+<<<<<<< Updated upstream
   padding: none;
   list-style-type: none;
   display: flex; 
@@ -80,3 +81,26 @@
   text-align: center;
   justify-content: center;
 }
+=======
+   list-style-type: none;
+   /* grid fallback */
+   display: flex;
+   flex-wrap: wrap;
+   /* - */
+   display: grid;
+   grid-template-columns: 1fr 1fr 1fr;
+   gap: 50px;
+   text-align: center;
+   justify-content: center;
+ }
+ 
+ 
+ .list-group-item {
+   display: inline-block;
+   padding: 0;
+   border: none;
+   border-radius: 10px;
+   background: rgb(255, 255, 255, 0);
+ }
+ 
+>>>>>>> Stashed changes

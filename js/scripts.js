@@ -19,6 +19,15 @@ let pokemonRepository = (function () {
     button.classList.add('pokemonbutton');
     listpokemon.appendChild(button);
     pokemonList.appendChild(listpokemon);
+<<<<<<< Updated upstream
+=======
+    button.classList.add(
+      'custom-button',
+      'show-modal',
+      'btn-primary',
+      'btn'
+    );
+>>>>>>> Stashed changes
 
     button.addEventListener('click', function (event) {
       showDetails(pokemon);
@@ -60,7 +69,22 @@ let pokemonRepository = (function () {
       loadDetails(pokemon)
       }
 
+<<<<<<< Updated upstream
     let modalContainer = document.querySelector('#modal-container');
+=======
+      function showPokemonImages() {
+        for (let i = 0; i < pokemonList.length; i++) {
+          let image = $('#' + pokemonList[i].name + ' img');
+          image.attr('src', pokemonList[i].imageURL);
+          if (i < 10) {
+            image.attr('loading', 'lazy');
+          }
+          image.attr('height', '100');
+          image.attr('width', '100');
+          image.attr('alt', pokemonList[i].name + ' image');
+        }
+      }
+>>>>>>> Stashed changes
 
     function showModal (pokemon) {
       modalContainer.innerHTML = '';
