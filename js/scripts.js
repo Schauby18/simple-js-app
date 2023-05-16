@@ -12,26 +12,39 @@ let pokemonRepository = (function () {
   }
 
   function addListItem(pokemon) {
-    let pokemonList = document.querySelector('.pokemon-list');
-    let listpokemon = document.createElement('li');
-    let button = document.createElement('button');
-    button.innerText = pokemon.name;
-    button.setAttribute('data-toggle', 'modal');
-    button.setAttribute('data-target', '#modal-container');
-    listpokemon.classList.add('list-group-item');
-    listpokemon.appendChild(button);
-    pokemonList.appendChild(listpokemon);
-    button.classList.add(
-      'button-class',
-      'show-modal',
-      'btn',
-      'btn-outline-info'
-    );
+    pokemonRepository.loadDetails(pokemon).then(function () {
+      var $row = $(".row");
 
-    button.addEventListener('click', () => {
-      showDetails(pokemon);
+      var $card = $('<div class="card" style="width:400px"></div>');
+      var $image = $(
+        '<img class="card-img-top" alt="Card image" style="width:20%" />'
+      );
+      $image.attr("src", pokemon.imageUrlFront);
+      var $cardBody = $('<div class="card-body"></div>');
+      var $cardTitle = $("<h4 class='card-title' >" + pokemon.name + "</h4>");
+      var $seeProfile = $(
+        '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-container">See Profile</button>'
+      );
+
+      $row.append($card);
+      //Append the image to each card
+      $card.append($image);
+      $card.append($cardBody);
+      $cardBody.append($cardTitle);
+      $cardBody.append($seeProfile);
+
+      $seeProfile.on("click", function (event) {
+        showDetails(pokemon);
+      });
     });
-     }
+  }
+     
+    function showDetails(pokemon) {
+      pokemonRepository.loadDetails(pokemon).then(function () {
+        showModal(pokemon);
+        console.log(pokemon);
+      });
+      }
 
      function loadList() {
       return fetch(apiUrl).then(function (response) {
@@ -69,13 +82,6 @@ let pokemonRepository = (function () {
       });
     }
 
-    function showDetails(pokemon) {
-      pokemonRepository.loadDetails(pokemon).then(function () {
-        showModal(pokemon);
-        console.log(pokemon);
-      });
-      }
-
     function showModal (pokemon) {
       let modalBody = $('.modal-body');
       let modalTitle = $('.modal-title');
@@ -108,6 +114,35 @@ let pokemonRepository = (function () {
       modalBody.append(weightElement);
       modalBody.append(typesElement);
     }
+
+    function searchPokemon() {
+      let searchInput = document.getElementById("search-input");
+      let searchText = searchInput.value.toLowerCase();
+      let allPokemon = document.querySelectorAll("$cardTitle");
+  
+      allPokemon.forEach(function (pokemon) {
+        let pokemonText = pokemon
+          .querySelector(".pokemon-button")
+          .innerText.toLowerCase();
+        let searchList = document.querySelector(".pokemon-list");
+  
+        if (pokemonText.includes(searchText)) {
+          searchList.classList.add("search-list");
+          pokemon.style.display = "inline-block";
+        } else {
+          pokemon.style.display = "none";
+        }
+  
+        if (!searchInput.value) {
+          searchList.classList.remove("search-list");
+        }
+      });
+    }
+  
+    let searchInput = document.getElementById("search-input");
+    searchInput.addEventListener("input", function () {
+      searchPokemon();
+    });
   
     return {
       add: add,
@@ -115,7 +150,6 @@ let pokemonRepository = (function () {
       addListItem: addListItem,
       loadList: loadList,
       loadDetails: loadDetails,
-      showDetails: showDetails,
       showModal: showModal
     };
 })();
