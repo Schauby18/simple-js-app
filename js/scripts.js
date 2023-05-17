@@ -17,7 +17,7 @@ let pokemonRepository = (function () {
 
       var $card = $('<div class="card" style="width:400px"></div>');
       var $image = $(
-        '<img class="card-img-top" alt="Card image" style="width:20%" />'
+        '<img class="card-img-top" alt="Card image" style="width:40%" />'
       );
       $image.attr("src", pokemon.imageUrlFront);
       var $cardBody = $('<div class="card-body"></div>');
@@ -118,12 +118,12 @@ let pokemonRepository = (function () {
     function searchPokemon() {
       let searchInput = document.getElementById("search-input");
       let searchText = searchInput.value.toLowerCase();
-      let allPokemon = document.querySelectorAll("$cardTitle");
+      let allPokemon = document.querySelectorAll(".card");
   
       allPokemon.forEach(function (pokemon) {
-        let pokemonText = pokemon
-          .querySelector(".pokemon-button")
-          .innerText.toLowerCase();
+        let pokemonText = pokemon.querySelector(".card-body")
+        .innerText
+        .toLowerCase();
         let searchList = document.querySelector(".pokemon-list");
   
         if (pokemonText.includes(searchText)) {
@@ -142,8 +142,8 @@ let pokemonRepository = (function () {
     let searchInput = document.getElementById("search-input");
     searchInput.addEventListener("input", function () {
       searchPokemon();
-    });
-  
+    });    
+
     return {
       add: add,
       getAll: getAll,
@@ -159,3 +159,4 @@ let pokemonRepository = (function () {
       pokemonRepository.addListItem(pokemon);
     })
   });
+  
